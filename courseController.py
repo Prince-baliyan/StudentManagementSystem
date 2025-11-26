@@ -51,7 +51,7 @@ class CourseController:
         self.CourseName=self.ui.lineEdit_12.text()
         self.db.savecouse(self.CourseName)
         self.ui.lineEdit_12.setText("")
-        QMessageBox(QMessageBox.Critical,"Information","Course Added SuccessFully.",QMessageBox.Ok).exec_()
+        QMessageBox(QMessageBox.Information,"Information","Course Added SuccessFully.",QMessageBox.Ok).exec_()
         print("Saved")
         self.updateCombobox()
 
@@ -62,7 +62,7 @@ class CourseController:
         self.NewCourseName=self.ui.lineEdit_13.text()
         self.db.updateCourse(self.SelectCourse, self.NewCourseName)
         self.ui.lineEdit_13.setText("")
-        QMessageBox(QMessageBox.Critical,"Information","Course Change SuccessFully.",QMessageBox.Ok).exec_()
+        QMessageBox(QMessageBox.Information,"Information","Course Change SuccessFully.",QMessageBox.Ok).exec_()
 
 ## ------------------------------------------------------------------- CLASS FOR ATTENDANCE TABLE FOR STUDENT -------------------------------------------------------- ##
 
@@ -82,7 +82,7 @@ class AttendanceApp:
         self.ui.prev_button.clicked.connect(self.prev_month)
         self.ui.next_button.clicked.connect(self.next_month)
         self.ui.table.cellChanged.connect(self.cell_edited)
-        self.ui.pushButton_14.clicked.connect(self.ref_studenttable)
+        
 
     def initDB(self):
         self.conn = sqlite3.connect("student_management.db")

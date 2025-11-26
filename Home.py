@@ -81,7 +81,7 @@ class Control:
         Username=self.ui.lineEdit.text()
         Password=self.ui.lineEdit_2.text() 
         if (Username == '' and Password ==''):
-            QMessageBox(QMessageBox.Critical, "Warning","Username or Password Required!", QMessageBox.Ok).exec_()
+            QMessageBox(QMessageBox.Warning, "Warning","Username or Password Required!", QMessageBox.Ok).exec_()
         else:
             p =self.db.validateUser(Username,Password)
             if p == None:
@@ -105,7 +105,7 @@ class Control:
         Password=self.ui.lineEdit_7.text()
         securitykey=self.ui.lineEdit_8.text()
         if (name==''or username==''or EmailId==''or mobilenumber==''or Password==''or securitykey==''):
-            QMessageBox(QMessageBox.Critical,"Warning","All Details Are Required!",QMessageBox.Ok).exec_()
+            QMessageBox(QMessageBox.Warning,"Warning","All Details Are Required!",QMessageBox.Ok).exec_()
         else:
             r=self.db.saveUser(name,username,EmailId,mobilenumber,Password,securitykey)
             if r==2:
@@ -131,13 +131,13 @@ class Control:
         Securitykey=self.ui.lineEdit_10.text()
         Newpassword=self.ui.lineEdit_11.text()
         if(Emailid=='' and Securitykey==''):
-            QMessageBox(QMessageBox.Critical,"Warning","Email_id or Security_key Required!",QMessageBox.Ok).exec_()
+            QMessageBox(QMessageBox.Warning,"Warning","Email_id or Security_key Required!",QMessageBox.Ok).exec_()
         else:
             q=self.db.forgetpass(Emailid,Securitykey,Newpassword)
             if q==1:
                 QMessageBox(QMessageBox.Critical,"Error","User not Found!",QMessageBox.Ok).exec()
             elif q == 2:
-                QMessageBox(QMessageBox.Critical,"Warning","Unexpected Error!",QMessageBox.Ok).exec()
+                QMessageBox(QMessageBox.Warning,"Warning","Unexpected Error!",QMessageBox.Ok).exec()
             else:
                 self.showHome()
         self.ui.lineEdit_9.setText("")
@@ -162,13 +162,13 @@ class Control:
         Father_Contact_Number=self.ui.lineEdit_24.text()
         Registration_Number=self.ui.lineEdit_23.text()
         if(Student_Id==''or Student_Name==''or Date_Of_Birth==''or Gender==''or Address==''or Course_Stream==''or Email_Id==''or Contact_Number==''or Father_Name==''or Father_Contact_Number==''or Registration_Number==''):
-            QMessageBox(QMessageBox.Critical,"Warning","All Details Are Required!",QMessageBox.Ok).exec_()
+            QMessageBox(QMessageBox.Warning,"Warning","All Details Are Required!",QMessageBox.Ok).exec_()
         else:
             self.st.addStudent(Student_Id,Student_Name,Date_Of_Birth,Gender,Address,Course_Stream,Email_Id,Contact_Number,Father_Name,Father_Contact_Number,Registration_Number)
             print("Data save successfully:")
             self.st.showallstudent()
             self.showHome()
-            QMessageBox(QMessageBox.Critical,"Information","Student Added SuccessFully.",QMessageBox.Ok).exec_()
+            QMessageBox(QMessageBox.Information,"Information","Student Added SuccessFully.",QMessageBox.Ok).exec_()
         self.ui.lineEdit_14.setText("")
         self.ui.lineEdit_16.setText("")
         self.ui.lineEdit_20.setText("")
@@ -253,7 +253,7 @@ class Control:
         self.ui.lineEdit_42.setText(Email_Id)
         self.ui.lineEdit_49.setText(Course)
         self.ui.lineEdit_44.setText(Registration_Number)
-        QMessageBox(QMessageBox.Critical,"Information","Searching Student is This.",QMessageBox.Ok).exec_()
+        QMessageBox(QMessageBox.Information,"Information","Searching Student is This.",QMessageBox.Ok).exec_()
 
 ## ---------------------- CLEAR THE DETAIL FOR SEACRHING STUDENT ----------------------------- ##
 
@@ -309,7 +309,7 @@ class Control:
         self.ui.lineEdit_27.setText(Student_Id)
         self.ui.lineEdit_38.setText(Gender)
         self.ui.lineEdit_62.setText(Registration_Number)
-        QMessageBox(QMessageBox.Critical,"Information","Searching Student is This.",QMessageBox.Ok).exec_()
+        QMessageBox(QMessageBox.Information,"Information","Searching Student is This.",QMessageBox.Ok).exec_()
 
 ## -------------------------------- UPDATE STUDENT ---------------------------------- ##
 
@@ -326,7 +326,7 @@ class Control:
         Gender = self.ui.lineEdit_38.text()
         Registration_Number = self.ui.lineEdit_62.text()
         self.st.updateStudent(Student_Id,Student_Name, Father_Name , Contact_Number,Email_Id, Address, Date_Of_Birth, Gender, Course_Stream, Registration_Number, Father_Contact_Number)
-        QMessageBox(QMessageBox.Critical,"Information","Data Update SuccessFully.",QMessageBox.Ok).exec_()
+        QMessageBox(QMessageBox.Information,"Information","Data Update SuccessFully.",QMessageBox.Ok).exec_()
         self.ui.lineEdit_27.setText("")
         self.ui.lineEdit_63.setText("")
         self.ui.lineEdit_64.setText("")
@@ -378,7 +378,7 @@ class Control:
             self.ui.lineEdit_82.setText("")
             return
         else:
-            QMessageBox(QMessageBox.Critical,"Information","Student Delete SuccessFully.",QMessageBox.Ok).exec_()
+            QMessageBox(QMessageBox.Information,"Information","Student Delete SuccessFully.",QMessageBox.Ok).exec_()
             self.ui.lineEdit_82.setText("")
        
 
@@ -400,13 +400,13 @@ class Control:
         Department_Designation=self.ui.lineEdit_32.text()
         Date_of_Joining=self.ui.lineEdit_30.text()
         if(Teacher_Id==''or Teacher_Name==''or Gender==''or Date_Of_Birth==''or Address==''or Contact_Number==''or Email_Id==''or Qualification_Experience==''or Department_Designation==''or Date_of_Joining==''):
-            QMessageBox(QMessageBox.Critical,"Warning","All Details Are Required!",QMessageBox.Ok).exec_()
+            QMessageBox(QMessageBox.Warning,"Warning","All Details Are Required!",QMessageBox.Ok).exec_()
         else:
             s=self.st.addTeacher(Teacher_Id,Teacher_Name,Gender,Date_Of_Birth,Address,Contact_Number,Email_Id,Qualification_Experience,Department_Designation,Date_of_Joining)
             print("s is", s)
             self.st.showallteacher()
             self.showHome()
-            QMessageBox(QMessageBox.Critical,"Information","Teacher Added SuccessFully.",QMessageBox.Ok).exec_()
+            QMessageBox(QMessageBox.Information,"Information","Teacher Added SuccessFully.",QMessageBox.Ok).exec_()
         self.ui.lineEdit_25.setText("")
         self.ui.lineEdit_36.setText("")
         self.ui.lineEdit_35.setText("")
@@ -492,7 +492,7 @@ class Control:
         self.ui.lineEdit_58.setText(Qualification_Experience)
         self.ui.lineEdit_59.setText(Department_Designation)
         self.ui.lineEdit_60.setText(Date_of_Joining)
-        QMessageBox(QMessageBox.Critical,"Information","Searching Teacher is This.",QMessageBox.Ok).exec_()
+        QMessageBox(QMessageBox.Information,"Information","Searching Teacher is This.",QMessageBox.Ok).exec_()
 
 ## --------------- CLEAR DETAIL FOR SEARCHING TEACHER --------------- ##
 
@@ -548,7 +548,7 @@ class Control:
         self.ui.lineEdit_80.setText(Qualification_Experience)
         self.ui.lineEdit_78.setText(Department_Designation)
         self.ui.lineEdit_77.setText(Date_Of_Joining)
-        QMessageBox(QMessageBox.Critical,"Information","Searching Teacher is This.",QMessageBox.Ok).exec_()
+        QMessageBox(QMessageBox.Information,"Information","Searching Teacher is This.",QMessageBox.Ok).exec_()
 
 
 ## ---------------------------------- UPDATE TEACHER --------------------------------------------------- ##
@@ -566,7 +566,7 @@ class Control:
         Department_Designation = self.ui.lineEdit_78.text()
         Date_Of_Joining = self.ui.lineEdit_77.text()
         self.st.updateteacher(Teacher_Id, Teacher_Name, Gender, Date_Of_Birth, Address, Contact_Number, Email_Id,Subject, Qualification_Experience, Department_Designation, Date_Of_Joining)
-        QMessageBox(QMessageBox.Critical,"Information","Data Update SuccessFully.",QMessageBox.Ok).exec_()
+        QMessageBox(QMessageBox.Information,"Information","Data Update SuccessFully.",QMessageBox.Ok).exec_()
         self.ui.lineEdit_72.setText("")
         self.ui.lineEdit_73.setText("")
         self.ui.lineEdit_76.setText("")
@@ -618,7 +618,7 @@ class Control:
             self.ui.lineEdit_81.setText("")
             return
         else:
-            QMessageBox(QMessageBox.Critical,"Information","Teacher Delete SuccessFully.",QMessageBox.Ok).exec_()
+            QMessageBox(QMessageBox.Information,"Information","Teacher Delete SuccessFully.",QMessageBox.Ok).exec_()
             self.ui.lineEdit_81.setText("")
             
 
@@ -636,7 +636,7 @@ class Control:
         subject=self.ui.comboBox_2.currentText()
         tid = Teacher_Name.split("-")[0]
         self.st.updateSubject(tid, subject)
-        QMessageBox(QMessageBox.Critical,"Information","Assign Subject SuccessFully.",QMessageBox.Ok).exec_()
+        QMessageBox(QMessageBox.Information,"Information","Assign Subject SuccessFully.",QMessageBox.Ok).exec_()
 
 ## ------------------------------------------------------------------ FUNCTION OF LOGOUT ------------------------------------------------------##
 
@@ -729,6 +729,7 @@ class Control:
         self.ui.stackedWidget_7.setCurrentWidget(self.ui.stackedWidget_7Page1)       ## add teacher table ka back button
         
     def attendancerecord(self):
+        self.attendanceController.ref_studenttable()
         self.ui.stackedWidget_7.setCurrentWidget(self.ui.page_15)
     
     def backSP(self):
