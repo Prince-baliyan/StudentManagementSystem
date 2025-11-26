@@ -1,0 +1,21 @@
+<RCC>
+  <qresource prefix="images">
+    <file>images/student-management-software-500x500.webp</file>
+    <file>images/user.png</file>
+  </qresource>
+  <qresource prefix="newPrefix"/>
+  <qresource prefix="newPrefix">
+    <file>C:/Users/admin/Downloads/ChatGPT Image Nov 21, 2025, 04_36_42 PM.png</file>
+  </qresource>
+  <qresource prefix="newPrefix"/>
+  <qresource prefix="newPrefix"/>
+  <qresource prefix="newPrefix">
+    <file>C:/Users/admin/Downloads/stmt-1536x878.webp</file>
+  </qresource>
+  <qresource prefix="newPrefix">
+    <file>C:/Users/admin/Downloads/edcrib-blog1-1024x683.jpeg</file>
+  </qresource>
+  <qresource prefix="newPrefix">
+    <file>images/photo..png</file>
+  </qresource>
+</RCC>
