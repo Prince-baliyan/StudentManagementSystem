@@ -64,7 +64,7 @@
        <string notr="true">background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:0, stop:0 rgba(16, 11, 12, 255), stop:1 rgba(255, 255, 255, 255))</string>
       </property>
       <property name="currentIndex">
-       <number>0</number>
+       <number>1</number>
       </property>
       <widget class="QWidget" name="stackedWidgetPage1">
        <layout class="QHBoxLayout" name="horizontalLayout">
@@ -136,7 +136,7 @@
                <string notr="true">background-color:white</string>
               </property>
               <property name="currentIndex">
-               <number>0</number>
+               <number>2</number>
               </property>
               <widget class="page" name="stackedWidget_page1to2">
                <widget class="QLabel" name="label">
@@ -1116,7 +1116,7 @@ color:black;</string>
               <string notr="true">background:qlineargradient(spread:pad, x1:0, y1:0, x2:1, y2:1, stop:0 rgba(24, 74, 74, 255), stop:1 rgba(255, 255, 255, 255))</string>
              </property>
              <property name="currentIndex">
-              <number>0</number>
+              <number>2</number>
              </property>
              <widget class="QWidget" name="stackedWidget_7Page1">
               <layout class="QGridLayout" name="gridLayout">
