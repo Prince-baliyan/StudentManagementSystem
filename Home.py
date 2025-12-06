@@ -314,6 +314,14 @@ class Control:
 ## -------------------------------- UPDATE STUDENT ---------------------------------- ##
 
     def updateStudent(self):
+        Student_Id=self.ui.lineEdit_61.text()
+
+        # ----------- Condition: If Student_Id is empty -----------#
+
+        if Student_Id == "":
+            QMessageBox(QMessageBox.Warning, "Warning", "Please Enter Student_Id First!", QMessageBox.Ok).exec_()
+            return
+        
         Student_Id = self.ui.lineEdit_27.text()
         Student_Name = self.ui.lineEdit_63.text()
         Father_Name = self.ui.lineEdit_64.text()
@@ -554,6 +562,13 @@ class Control:
 ## ---------------------------------- UPDATE TEACHER --------------------------------------------------- ##
 
     def updateteacher(self):
+        Teacher_Id=self.ui.lineEdit_66.text()
+    
+    # ----------- Condition: If Student_Id is empty -----------#
+
+        if Teacher_Id == "":
+            QMessageBox(QMessageBox.Warning, "Warning", "Please Enter Teacher_Id First!", QMessageBox.Ok).exec_()
+            return
         Teacher_Id = self.ui.lineEdit_72.text()
         Teacher_Name = self.ui.lineEdit_73.text()
         Date_Of_Birth = self.ui.lineEdit_76.text()
@@ -634,6 +649,9 @@ class Control:
     def assignsubjectteacher(self):
         Teacher_Name=self.ui.comboBox_4.currentText()
         subject=self.ui.comboBox_2.currentText()
+        if Teacher_Name =="" or subject == "":
+            QMessageBox(QMessageBox.Warning, "Warning", "Please Choose Teacher_Name And Subject First!", QMessageBox.Ok).exec_()
+            return
         tid = Teacher_Name.split("-")[0]
         self.st.updateSubject(tid, subject)
         QMessageBox(QMessageBox.Information,"Information","Assign Subject SuccessFully.",QMessageBox.Ok).exec_()
@@ -706,7 +724,7 @@ class Control:
 
     def addcourse(self):
         self.ui.stackedWidget_9.setCurrentWidget(self.ui.stackedWidget_9Page1)
-
+        
     def updatecourse(self):
         self.ui.stackedWidget_9.setCurrentWidget(self.ui.page_10)
 
@@ -731,6 +749,7 @@ class Control:
     def attendancerecord(self):
         self.attendanceController.ref_studenttable()
         self.ui.stackedWidget_7.setCurrentWidget(self.ui.page_15)
+        
     
     def backSP(self):
         self.ui.stackedWidget_7.setCurrentWidget(self.ui.page_5)

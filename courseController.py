@@ -49,6 +49,9 @@ class CourseController:
 
     def saveCourse(self):
         self.CourseName=self.ui.lineEdit_12.text()
+        if self.CourseName =="":
+            QMessageBox(QMessageBox.Warning, "Warning", "Please Enter CourseName First!!", QMessageBox.Ok).exec_()
+            return
         self.db.savecouse(self.CourseName)
         self.ui.lineEdit_12.setText("")
         QMessageBox(QMessageBox.Information,"Information","Course Added SuccessFully.",QMessageBox.Ok).exec_()
@@ -60,6 +63,9 @@ class CourseController:
     def updatecourse(self):
         self.SelectCourse=self.ui.comboBox.currentText()
         self.NewCourseName=self.ui.lineEdit_13.text()
+        if self.SelectCourse =="" or self.NewCourseName == "":
+            QMessageBox(QMessageBox.Warning, "Warning", "Please Choose OldCourse And NewCourse!", QMessageBox.Ok).exec_()
+            return
         self.db.updateCourse(self.SelectCourse, self.NewCourseName)
         self.ui.lineEdit_13.setText("")
         QMessageBox(QMessageBox.Information,"Information","Course Change SuccessFully.",QMessageBox.Ok).exec_()
