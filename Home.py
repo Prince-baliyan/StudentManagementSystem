@@ -711,6 +711,9 @@ class Control:
         self.ui.stackedWidget.setCurrentWidget(self.ui.page_3)
 
     def home(self):
+        self.gettotalcourse()
+        self.gettotalstudent()
+        self.gettotalteacher()
         self.ui.stackedWidget_7.setCurrentWidget(self.ui.stackedWidget_7Page1)
     
     def managestudent(self):
