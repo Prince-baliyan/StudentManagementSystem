@@ -764,5 +764,6 @@ class Control:
         self.ui.stackedWidget_7.setCurrentWidget(self.ui.page_5)
 
 
+
 if __name__ == '__main__':
     Control()

@@ -1,6 +1,7 @@
-# from PyQt5 import QtCore, QtGui, QtWidgets
-# import sys
-# import windows as ui
+
+from PyQt5 import QtCore, QtGui, QtWidgets
+import sys
+import windows as ui
 import handleDB as db
 from PyQt5.QtWidgets import QMessageBox
 
@@ -113,6 +114,7 @@ class AttendanceApp:
 
     # -------------------------- Create attendance table --------------------------#
         
+        # FIXED: Changed table name from 'attendance' to 'attendanceStudent'
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS attendanceStudent (
                 student TEXT,
@@ -161,7 +163,8 @@ class AttendanceApp:
         for row, student in enumerate(self.students):
             for col in range(1, self.ui.table.columnCount()):
                 date_str = f"{self.current_year}-{self.current_month:02d}-{col:02d}"
-                self.cursor.execute("SELECT status FROM attendance WHERE student=? AND date=?", (student, date_str))
+                # FIXED: Changed table name from 'attendance' to 'attendanceStudent'
+                self.cursor.execute("SELECT status FROM attendanceStudent WHERE student=? AND date=?", (student, date_str))
                 result = self.cursor.fetchone()
                 if result:
                     item = self.ui.table.item(row, col)
@@ -184,8 +187,9 @@ class AttendanceApp:
 
         self.set_cell_color(item)
 
+        # FIXED: Changed table name from 'attendance' to 'attendanceStudent'
         self.cursor.execute("""
-            INSERT OR REPLACE INTO attendance (student, date, status)
+            INSERT OR REPLACE INTO attendanceStudent (student, date, status)
             VALUES (?, ?, ?)
         """, (student, date_str, status))
         self.conn.commit()
@@ -261,6 +265,7 @@ class AttendanceAppTeacher:
 
     # ------------------------- Create attendance table -------------------------#
         
+        # FIXED: Changed table name from 'attendance' to 'attendanceTeacher'
         self.cursor.execute("""
             CREATE TABLE IF NOT EXISTS attendanceTeacher (
                 student TEXT,
@@ -279,14 +284,14 @@ class AttendanceAppTeacher:
     def populate_table(self):
         self.ui.tables.blockSignals(True)
         days = monthrange(self.current_year, self.current_month)[1]
-        self.ui.tables.setRowCount(len(self.students))
+        self.ui.tables.setRowCount(len(self.teachers))
         self.ui.tables.setColumnCount(days + 1)
 
         headers = ["Name"] + [str(day) for day in range(1, days + 1)]
         self.ui.tables.setHorizontalHeaderLabels(headers)
 
-        for row, student in enumerate(self.students):
-            self.ui.tables.setItem(row, 0, QTableWidgetItem(student))
+        for row, teacher in enumerate(self.teachers):
+            self.ui.tables.setItem(row, 0, QTableWidgetItem(teacher))
             for col in range(1, days + 1):
                 item = QTableWidgetItem("")
                 item.setTextAlignment(Qt.AlignCenter)
@@ -296,7 +301,7 @@ class AttendanceAppTeacher:
     def load_teachers(self):
         self.cursor.execute("SELECT Teacher_Name FROM Teachertbl")
         result = self.cursor.fetchall()
-        self.students = [row[0] for row in result]
+        self.teachers = [row[0] for row in result]
 
     def ref_teacherable(self):
         self.initDB()
@@ -305,10 +310,11 @@ class AttendanceAppTeacher:
     def load_attendance(self):
         self.populate_table()
         self.ui.tables.blockSignals(True)
-        for row, student in enumerate(self.students):
+        for row, teacher in enumerate(self.teachers):
             for col in range(1, self.ui.tables.columnCount()):
                 date_str = f"{self.current_year}-{self.current_month:02d}-{col:02d}"
-                self.cursor.execute("SELECT status FROM attendance WHERE student=? AND date=?", (student, date_str))
+                # FIXED: Changed table name from 'attendance' to 'attendanceTeacher'
+                self.cursor.execute("SELECT status FROM attendanceTeacher WHERE student=? AND date=?", (teacher, date_str))
                 result = self.cursor.fetchone()
                 if result:
                     item = self.ui.tables.item(row, col)
@@ -319,7 +325,7 @@ class AttendanceAppTeacher:
     def cell_edited(self, row, col):
         if col == 0:
             return                                                           # Skip name column
-        student = self.ui.tables.item(row, 0).text()
+        teacher = self.ui.tables.item(row, 0).text()
         date_str = f"{self.current_year}-{self.current_month:02d}-{col:02d}"
         item = self.ui.tables.item(row, col)
 
@@ -331,10 +337,11 @@ class AttendanceAppTeacher:
 
         self.set_cell_color(item)
 
+        # FIXED: Changed table name from 'attendance' to 'attendanceTeacher'
         self.cursor.execute("""
-            INSERT OR REPLACE INTO attendance (student, date, status)
+            INSERT OR REPLACE INTO attendanceTeacher (student, date, status)
             VALUES (?, ?, ?)
-        """, (student, date_str, status))
+        """, (teacher, date_str, status))
         self.conn.commit()
 
     def set_cell_color(self, item):
